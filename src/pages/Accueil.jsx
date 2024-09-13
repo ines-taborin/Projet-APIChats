@@ -18,12 +18,17 @@ function Accueil() {
 	useEffect(() => {
 		document.title = "Accueil";
 		fetch("https://api.thecatapi.com/v1/breeds?attach_image=1", requestOptions)
-			.then((response) => response.json())
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error("Network response was not ok");
+				}
+				return response.json();
+			})
 			.then((data) => {
-				// Filtrer les resultats pour inclure seulement les chats avec images
 				const filteredChats = data.filter((chat) => chat.image && chat.image.url && chat.image.id.length > 0);
 				setChats(filteredChats);
-			});
+			})
+			.catch((error) => console.error("There was a problem with the fetch operation:", error));
 	}, []);
 
 	return (
