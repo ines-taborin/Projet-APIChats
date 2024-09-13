@@ -68,6 +68,18 @@ function Chat() {
 								<h3 className="text-2xl font-extrabold">Description</h3>
 								<p className="text-justify">{chat ? chat.description : "Aucune description n'est disponible"}</p>
 							</div>
+							<div className="flex items-center gap-6 mt-4">
+								{chat.cfa_url && (
+									<a href={chat.cfa_url} target="_blank">
+										<img src="/cfa-logo.svg" alt={chat.name} />
+									</a>
+								)}
+								{chat.vcahospitals_url && (
+									<a href={chat.vcahospitals_url} target="_blank">
+										<img src="/vca-logo.png" alt={chat.name} />
+									</a>
+								)}
+							</div>
 						</div>
 					</div>
 				</div>
