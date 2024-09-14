@@ -2,12 +2,13 @@ import { createBrowserRouter } from "react-router-dom";
 import Accueil from "./pages/Accueil";
 import Chat from "./pages/Chat";
 import App from "./App";
-import Error404 from "./pages/Error404";
+import Error from "./pages/Error";
+import Result from "./pages/Result";
 
 const routes = createBrowserRouter([
 	{
 		path: "/",
-		errorElement: <Error404 />,
+		errorElement: <Error error="La page que vous tentez d'afficher ne semble pas exister" />,
 		element: <App />,
 		children: [
 			{
@@ -17,6 +18,10 @@ const routes = createBrowserRouter([
 			{
 				path: "/chat/:id",
 				element: <Chat />,
+			},
+			{
+				path: "/result/:breed",
+				element: <Result />,
 			},
 		],
 	},

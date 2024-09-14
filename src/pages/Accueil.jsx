@@ -13,11 +13,12 @@ function Accueil() {
 		redirect: "follow",
 	};
 
+	// Initialiser la liste des chats
 	const [chats, setChats] = useState([]);
-	console.log(chats);
+
 	useEffect(() => {
 		document.title = "Accueil";
-		fetch("https://api.thecatapi.com/v1/breeds?attach_image=1", requestOptions)
+		fetch("https://api.thecatapi.com/v1/breeds", requestOptions)
 			.then((response) => {
 				if (!response.ok) {
 					throw new Error("Network response was not ok");
@@ -33,9 +34,9 @@ function Accueil() {
 
 	return (
 		<div className="container my-10 ">
-			<h1 className="uppercase text-4xl font-extrabold my-10 bg-[#301D1C] w-fit mx-auto px-8 py-6 text-white">Liste des Chats</h1>
+			<h1 className="uppercase text-4xl font-extrabold my-10 bg-[#301D1C] w-fit mx-auto px-8 py-6 text-white">Races de Chats</h1>
 
-			<div className="grid grid-cols-3 gap-8">
+			<div className="grid grid-cols-3 gap-4 w-full">
 				{chats.map((chat) => (
 					<Chat key={chat.id} chat={chat} />
 				))}

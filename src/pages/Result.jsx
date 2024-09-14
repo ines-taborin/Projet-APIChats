@@ -3,8 +3,9 @@ import { Link, useParams } from "react-router-dom";
 import Bouton from "../composants/Bouton";
 import { ChevronLeft } from "lucide-react";
 import Spinner from "../composants/Spinner";
+import Error from "./Error";
 
-function Chat() {
+function Result() {
 	const headers = new Headers({
 		"Content-Type": "application/json",
 		"x-api-key": "live_EVLvLili2JoEZbD3up1Rys3PdcVg831piGhrJ99HjelN3pPW4FkOtS4nczfAeou3",
@@ -16,8 +17,8 @@ function Chat() {
 		redirect: "follow",
 	};
 
-	// Extraire l'id de la race de chat de l'URL
-	const { id } = useParams();
+	// Extraire la race de chat de l'URL
+	const { breed } = useParams();
 
 	// Initialiser les statuts de chat, de chargement et d'erreur
 	const [chat, setChat] = useState(null);
@@ -25,23 +26,21 @@ function Chat() {
 	const [error, setError] = useState(null);
 
 	useEffect(() => {
-		// Récupérer les informations de la race de chat correspondante à l'id
-		fetch(`https://api.thecatapi.com/v1/images/search?breed_ids=${id}`, requestOptions)
+		fetch("https://api.thecatapi.com/v1/breeds", requestOptions)
 			.then((response) => response.json())
 			.then((data) => {
-				if (data) {
-					// Simplifier la structure du résultat
-					const breed = data[0]?.breeds[0];
+				// Filtrer la race de chat correspondante
+				const breedData = data.find((result) => result.name.toLowerCase() === breed.toLowerCase());
 
-					// Définir le statut de chat
-					setChat(breed);
-
-					// Configurer le titre de la page
-					document.title = breed ? breed.name : "Chat";
-
+				// Définir le statut correspondant
+				if (breedData) {
+					setChat(breedData);
+					document.title = breedData.name || "Chat";
 					setError(null);
+
+					// Si aucune race de chat correspondante n'est trouvée, afficher une erreur
 				} else {
-					setError(`Aucune race de chat correspondant à : ${id}`);
+					setError(`Aucune race de chat correspondant à : ${breed}`);
 				}
 				// Changer le statut de chargement
 				setLoading(false);
@@ -51,7 +50,7 @@ function Chat() {
 				setError("Une erreur est survenue. Veuillez recharger la page.");
 				setLoading(false);
 			});
-	}, [id]);
+	}, [breed]);
 
 	// Fonction pour afficher les étoiles
 	const renderLevel = (level) => {
@@ -204,4 +203,4 @@ function Chat() {
 	);
 }
 
-export default Chat;
+export default Result;

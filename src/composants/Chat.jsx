@@ -6,16 +6,16 @@ function Chat({ chat }) {
 	const imageUrl = chat.image && chat.image.url ? chat.image.url : "/chat_placeholder.webp";
 
 	return (
-		<div className="max-w-sm rounded overflow-hidden shadow-lg">
-			<Link to={`/chat/${chat.id}`}>
-				<img className="rounded-t-lg object-scale-down h-48 w-96" src={imageUrl} alt={chat.name} />
-			</Link>
+		<Link to={`/chat/${chat.id}`} className="max-w-sm rounded overflow-hidden shadow-lg group">
+			<div className="overflow-hidden">
+				<img className="rounded-t-lg object-cover h-[300px] w-full object-top group-hover:scale-105 transition-all" src={imageUrl} alt={chat.name} />
+			</div>
 			<div className="px-6 py-4">
 				<div className="font-bold text-3xl mb-2">{chat.name}</div>
 				<p className="font-bold mb-2">{chat.origin}</p>
-				<p className="text-justify">{chat.description}</p>
+				<p className="text-justify line-clamp-3">{chat.description}</p>
 			</div>
-		</div>
+		</Link>
 	);
 }
 
