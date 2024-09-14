@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Accueil from "./pages/Accueil";
 import Chat from "./pages/Chat";
+import Abonnes from "./pages/Abonnes";
 import App from "./App";
 import Error from "./pages/Error";
 import Result from "./pages/Result";
@@ -22,6 +23,10 @@ const routes = createBrowserRouter([
 			{
 				path: "/result/:breed",
 				element: <Result />,
+			},
+			{
+				path: "/abonnes",
+				element: <Abonnes />,
 			},
 		],
 	},
