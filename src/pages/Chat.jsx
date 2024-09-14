@@ -124,7 +124,7 @@ function Chat() {
 									</div>
 									{/* Sans poils  */}
 									<div className="text-lg">
-										<span className="font-bold">Race sans poils :</span> {chat.indoor === 0 ? "Non" : "Oui"}
+										<span className="font-bold">Race sans poils :</span> {chat.hairless === 0 ? "Non" : "Oui"}
 									</div>
 								</div>
 								<div className="text-lg">
@@ -142,7 +142,7 @@ function Chat() {
 									{/* Adaptabilité */}
 									<div className="flex items-center justify-between">
 										<span className="text-lg font-bold">Adaptabilité </span>
-										<span>{renderLevel(chat.aadaptability)}</span>
+										<span>{renderLevel(chat.adaptability)}</span>
 									</div>
 									{/* Amical avec les Enfants */}
 									<div className="flex items-center justify-between">
