@@ -6,7 +6,7 @@ function Chat({ chat }) {
 	const imageUrl = chat.image && chat.image.url ? chat.image.url : "/chat_placeholder.webp";
 
 	return (
-		<Link to={`/chat/${chat.id}`} className="max-w-sm rounded overflow-hidden shadow-lg group">
+		<Link to={`/chat/${chat.id}`} className="max-w-sm rounded overflow-hidden shadow-xl group">
 			<div className="overflow-hidden">
 				<img className="rounded-t-lg object-cover h-[300px] w-full object-top group-hover:scale-105 transition-all" src={imageUrl} alt={chat.name} />
 			</div>

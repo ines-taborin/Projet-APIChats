@@ -49,6 +49,8 @@ function Chat() {
 			// En cas d'erreur, afficher un message d'erreur
 			.catch((error) => {
 				setError("Une erreur est survenue. Veuillez recharger la page.");
+
+				// Changer le statut de chargement
 				setLoading(false);
 			});
 	}, [id]);
