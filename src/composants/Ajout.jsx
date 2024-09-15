@@ -41,7 +41,9 @@ const Ajout = () => {
 						value={abonne.nom}
 						onChange={handleChange}
 						className="w-[300px] px-4 py-2"
+						{...register("name", { required: "Veuillez inscrire votre nom" })}
 					/>
+					{errors.name && <p className="text-red-500">{errors.name.message}</p>}
 				</div>
 				<div>
 					<label hidden htmlFor="mail">
@@ -55,7 +57,11 @@ const Ajout = () => {
 						value={abonne.mail}
 						onChange={handleChange}
 						className="w-[300px] px-4 py-2"
+						{...register("mail", { required: "Veuillez inscrire votre adresse courriel" },
+							{ pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: "Veuillez inscrire une adresse courriel valide" } }
+						)}
 					/>
+					{errors.mail && <p className="text-red-500">{errors.mail.message}</p>}
 				</div>
 				<button className="bg-[#301D1C] hover:opacity-80 text-lg text-white font-extrabold tracking-widest px-4 py-1.5" type="submit">
 					Envoyer
