@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import abonnesSlice from "./abonnesSlice";
+import abonnesReducer from "./abonnesSlice";
 
 const store = configureStore({
     reducer: {
-        abonnes: abonnesSlice.reducer,
+        abonnes: abonnesReducer,
     },
 });
 
