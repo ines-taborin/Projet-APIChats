@@ -1,10 +1,17 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { ajouterAbonne } from "../store/abonnesSlice";
 
 const Ajout = () => {
 	const listeAbonnes = useSelector((state) => state.abonnes.abonnes);
 	const dispatch = useDispatch();
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
 
 	const [abonne, setAbonne] = useState({ nom: "", mail: "" });
 
@@ -17,7 +24,7 @@ const Ajout = () => {
 		return existe == undefined ? false : true;
 	};
 
-	const handleSubmit = (e) => {
+	const onSubmit = (e) => {
 		e.preventDefault();
 		if (verifierMail(abonne.mail) == true) alert(`Un abonné utilisant le courriel ${abonne.mail} est déjà inscrit...`);
 		else dispatch(ajouterAbonne(abonne));
@@ -28,7 +35,7 @@ const Ajout = () => {
 	return (
 		<footer className="w-screen bg-[#D4D0D0]/70 py-6">
 			<h3 className="text-center text-3xl font-extrabold mb-4">M'inscrire à l'infolettre</h3>
-			<form onSubmit={handleSubmit} className="container flex gap-6 justify-center items-end">
+			<form onSubmit={handleSubmit(onSubmit)} className="container flex gap-6 justify-center items-end">
 				<div>
 					<label hidden htmlFor="nom">
 						Nom
