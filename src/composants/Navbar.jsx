@@ -22,11 +22,7 @@ const NavBar = () => {
 							Accueil
 						</Link>
 					</li>
-					<li className="mr-1">
-						<Link to="/Posts" className="inline-block border border-white rounded hover:border-gray-200 hover:bg-gray-200 py-2 px-4">
-							Liste
-						</Link>
-					</li>
+
 					<li className="mr-1">
 						<Link to="/Abonnes" className="inline-block border border-white rounded hover:border-gray-200 hover:bg-gray-200 py-2 px-4">
 							Abonnés
